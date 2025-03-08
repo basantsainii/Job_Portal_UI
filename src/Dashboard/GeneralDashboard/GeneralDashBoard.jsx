@@ -7,9 +7,11 @@ function GeneralDashBoard() {
   return (
     <>
       <LoginSignUpHeader></LoginSignUpHeader>
+      <div className='bg-[#F7F7FF]'>
       <GenHomeRoot>
       <Outlet></Outlet>
       </GenHomeRoot>
+      </div>
       <Footer></Footer>
     </>
   )

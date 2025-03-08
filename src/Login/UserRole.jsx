@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { LoaderContext } from '../Components/LoaderContext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -9,12 +9,19 @@ import jobportalGif from '../assets/jobportal2.gif'; // Ensure correct path
 function UserRole() {
     const [role, setRole] = useState(null); 
     const { setLoading } = useContext(LoaderContext);
-    const { data } = useContext(DataContext);
+    const { data, setData } = useContext(DataContext);
     const navigate = useNavigate();
-
+    useEffect(()=>{
+        if(!data){
+            navigate("/login");
+        }
+    }, [])
+    
+    
     const ChooseCategory = async (e) => {
         e.preventDefault();
         
+
         if (!role) {
             toast.error("Please select a category");
             return;
@@ -23,10 +30,10 @@ function UserRole() {
         setLoading(true);
         try {
             const email = data.email; 
+            
             const res = await axios.post("http://localhost:3000/api/select-your-role", { role, email });
-
+            
             toast.success(res.data.message || "Role selected successfully!");
-
             // what is the meaning of this line
             await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for smoother transition
 
@@ -36,6 +43,7 @@ function UserRole() {
             toast.error(err.response?.data?.message || "Something went wrong");
         } finally {
             setLoading(false);
+            setData(null);
         }
     };
 
@@ -51,8 +59,8 @@ function UserRole() {
                     <button
                         type="button"
                         onClick={() => setRole("Employee")}
-                        className={`w-full py-2 rounded-md text-center transition-all ${
-                            role === "Employee" ? "bg-blue-950 text-white scale-105" : "bg hover:bg-emerald-950 text-white"
+                        className={`w-full py-2 rounded-md text-center  bg-gray-300 transition-all ${
+                            role === "Employee" ? "bg-sky-900 text-white scale-105" : "text-black hover:bg-sky-900 hover:text-white "
                         }`}
                     >
                         Employee
@@ -60,8 +68,8 @@ function UserRole() {
                     <button
                         type="button"
                         onClick={() => setRole("Employer")}
-                        className={`w-full py-2 rounded-md text-center transition-all ${
-                            role === "Employer" ? "bg-blue-950 text-white scale-105" : "bg hover:bg-emerald-950 text-white"
+                        className={`w-full py-2 rounded-md text-center bg-gray-300 transition-all ${
+                            role === "Employer" ? "bg-sky-900 text-white scale-105" : "text-black hover:bg-sky-900 hover:text-white "
                         }`}
                     >
                         Employer

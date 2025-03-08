@@ -41,36 +41,82 @@ const handleFormData = (e) => {
           }
    }
   return (
-    <div className='min-h-[100vh] flex items-center'>
-    <div className='m-auto bg-blend-overlay p-4 px-8 w-full sm:w-2/3 md:w-[45%] lg:w-[34%] xl:w-[28%] rounded-md shadow-[0px_0px_3px_0px] shadow-green-900'>
-      <div className=' flex justify-between'>
-      <Link to='/home'><img className='md:w-40 w-32 ' width="" src="src/assets/jobportal2.gif" alt="" /></Link>
-      <h2 className='text-2xl md:text-3xl mt-1 font-bold text-center'>Sign Up</h2>
+    <div className="min-h-screen flex items-center justify-center bg-blue-100 p-4">
+    {/* Card Container */}
+    <div className="w-full sm:w-2/3 md:w-[45%] lg:w-[34%] xl:w-[28%] bg-white p-3 px-10 rounded-lg shadow-lg">
+      
+      {/* Header Section */}
+      <div className="flex justify-between items-center">
+        <Link to="/home">
+          <img className="md:w-40 w-32" src="src/assets/jobportal2.gif" alt="Job Portal" />
+        </Link>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Sign Up</h2>
       </div>
-       <br />
-        <p className='text-yellow-900 text-sm'>Please fill All Details</p>
-    <form onSubmit={SubmitForm} action='/mail-verification' className=''>
-        <label htmlFor="fname">First Name</label> <br />
-        <input onChange={handleFormData} type="text" name='fname' placeholder='First Name' required className='rounded-md border border-gray-400 hover:scale-[1.01] w-full p-1'/>
-        <br /> <br />
-        <label htmlFor="lname">Last Name</label> <br />
-        <input onChange={handleFormData} type="text" name='lname' placeholder='Surname' className='rounded-md border border-gray-400 hover:scale-[1.01] w-full p-1'/>
-        <br /><br />
-        <label htmlFor="email">Email</label> <br />
-        <input onChange={handleFormData} type="email" name='email' placeholder='abc@email.com' required className='rounded-md border border-gray-400 hover:scale-[1.01] w-full p-1'/>
-        <br /><br />
-        <label htmlFor="phone">Phone</label> <br />
-        <input onChange={handleFormData} type="phone" name='phone' placeholder='mobile no.' className='rounded-md border border-gray-400 hover:scale-[1.01] w-full p-1'/>
-        <br /><br />
-        <label htmlFor="password">Password</label> <br />
-        <input onChange={handleFormData} type="password" name='password' placeholder='password' required className='rounded-md border border-gray-400 hover:scale-[1.01] w-full p-1'/>
-        <br /><br />
-        <p className='text-end'><input type="submit" value="sign-up"  className='p-1 rounded-md hover:scale-105 transition-all duration-200 hover:text-blue-950 hover:shadow-md hover:bg-yellow-500 bg-yellow-600 hover:cursor-pointer'/></p>
-    </form>
-    <p className='py-2'>Already registered?  &nbsp;<a href="/login" ><button className='text-blue-100 text-sm px-[4px] py-[0px] shadow-[0px_0px_2px_1px] shadow-green-900 hover:scale-105 bg-green-700 rounded-md'>login here</button></a></p>
-   
+
+      {/* Instructions */}
+      <p className="text-yellow-900 text-sm mt-4">Please fill all details</p>
+
+      {/* Form */}
+      <form onSubmit={SubmitForm} action="/mail-verification" className="mt-4 space-y-4">
+        <div>
+          <label htmlFor="fname" className="block text-gray-700">First Name</label>
+          <input type="text" name="fname" placeholder="First Name" required 
+            onChange={handleFormData}
+            className="w-full p-2 border border-gray-400 rounded-md  outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="lname" className="block text-gray-700">Last Name</label>
+          <input type="text" name="lname" placeholder="Surname" 
+            onChange={handleFormData}
+            className="w-full p-2 border border-gray-400 rounded-md  outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-gray-700">Email</label>
+          <input type="email" name="email" placeholder="abc@email.com" required
+            onChange={handleFormData}
+            className="w-full p-2 border border-gray-400 rounded-md  outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block text-gray-700">Phone</label>
+          <input type="phone" name="phone" placeholder="Mobile No." 
+            onChange={handleFormData}
+            className="w-full p-2 border border-gray-400 rounded-md  outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="block text-gray-700">Password</label>
+          <input type="password" name="password" placeholder="Password" required
+            onChange={handleFormData}
+            className="w-full p-2 border border-gray-400 rounded-md outline-none"
+          />
+        </div>
+
+        {/* Submit Button */}
+        <div className="text-end">
+          <input type="submit" value="Sign Up"
+            className="px-4 py-2 bg-yellow-600 text-white font-medium rounded-md hover:bg-yellow-500 transition-all cursor-pointer"
+          />
+        </div>
+      </form>
+
+      {/* Already Registered Section */}
+      <p className="text-center text-sm mt-10">
+        Already registered?  
+        <Link to="/login">
+          <button className="ml-4 border border-green-80 text-green-800 px-3 rounded-md shadow-md hover:bg-green-50 transition">
+            Login Here
+          </button>
+        </Link>
+      </p>
     </div>
-    </div>
+  </div>
   )
 }
 

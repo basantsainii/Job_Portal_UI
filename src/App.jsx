@@ -32,16 +32,20 @@ import SearchJobs from './Dashboard/GeneralDashboard/SearchJobs.jsx'
 import GeneralHome from './Dashboard/GeneralDashboard/GeneralHome.jsx'
 import SearchByCompanies from './Dashboard/GeneralDashboard/SearchByCompanies.jsx'
 import AccountAccessRoot from './Login/AccountAccessRoot.jsx'
-
+import UserProfile from './Dashboard/EmployeeDashboard/Profile/UserProfile.jsx'
+import Modal from './Modal/Modal.jsx'
 
 function App() {
 
   return (
     <>
+
     <BrowserRouter>
-    <Toaster position='top-middle'/>
+    <Toaster position='top-center'/>
     <Loader/>
-    <Routes> 
+    {/* <Modal></Modal> */}
+    <Routes>
+
        {/* general dashboard routes  */}
       <Route path='/' element={<GeneralDashBoard/>}>
             <Route index element={<Navigate to='home'/>}/>
@@ -49,8 +53,12 @@ function App() {
             <Route path='search-job' element={<SearchJobs/>}/>
             <Route path='search-by-companies' element={<SearchByCompanies/>}/>
             <Route path='about-us' element={<AboutUs></AboutUs>}/>
-
+            <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
+            <Route path='terms-and-conditions' element={<TermsAndConditions/>}/>
+            <Route path='feedback' element={<Feedback/>}/>
+            <Route path='help-center' element={<HelpCenter/>}/>
       </Route>
+
 
 
       {/* login signup verification password routes  */}
@@ -67,28 +75,45 @@ function App() {
             <Route path='select-role-of-user' element={<UserRole/>}/>
       </Route>
 
+
+
+c
         {/* employee dashboard routes */}
       <Route path="/employee-dashboard/" element={<EmployeeDashboard/>}>
             <Route index element={<Navigate to="home"/>}/>
+
+            {/* header routes */}
             <Route path='home' element={<EmployeeHomeContent/>}/>
             <Route path='jobs' element={<EmployeeJobs/>}/>
             <Route path='applied' element={<EmployeeApplied/>}/>
             <Route path='companies' element={<EmpCompanies/>}/>
             <Route path='about-us' element={<AboutUs/>}/>
+
+            {/* profile routes */}
+            <Route path='user-profile' element={<UserProfile/>}/>
+
+            {/* footer routes */}
             <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
             <Route path='terms-and-conditions' element={<TermsAndConditions/>}/>
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='help-center' element={<HelpCenter/>}/>
+
+            
       </Route>
+
 
 
       {/* Employer Dashboard Routes */}
       <Route path="/employer-dashboard" element={<EmployerDashboard/>}>
 
+
+
       </Route>
       <Route path="*" element={<div>404 - Page Not Found</div>} />
     </Routes>
     </BrowserRouter>
+
+
 
 {/* <JwtToken></JwtToken> */}
     </>

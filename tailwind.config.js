@@ -1,3 +1,5 @@
+
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -11,7 +13,17 @@ export default {
       lg: '976px',
       xl: '1440px',
     },
-    extend: {},
+    extend: {
+      keyframes : {
+        crosal :{
+          '0%' : {transform: 'translateX(100%)'},
+          '100%': {transform : 'translateX(0%)'},
+        }
+      },
+      animation: {
+        crosal : "crosal 0.5s linear",
+      }
+    },
   },
   plugins: [],
 }

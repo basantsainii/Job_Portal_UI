@@ -33,50 +33,52 @@ try{
 
   return (
     <>
-      <div className='mx-auto p-1 md:p-4 px-8 w-full sm:w-2/3 md:w-[50%] lg:w-[35%] xl:w-[40%] rounded-md shadow-[0px_0px_25px_1px] shadow-green-900'>
-      <div className=" flex justify-between align-middle items-center flex-wrap sm:flex-nowrap">
+       <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      {/* Card Container */}
+      <div className="w-full sm:w-3/4 md:w-2/3 lg:w-2/5 xl:w-1/3 p-6 sm:p-8 rounded-md shadow-xl bg-white">
+        
+        {/* Header Section */}
+        <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start text-center sm:text-left gap-4">
           <img
-            className="mx-auto"
-            width="150px"
             src="src/assets/jobportal2.gif"
-            alt=""
+            alt="Job Portal Logo"
+            className="w-28 sm:w-32 mx-auto sm:mx-0"
           />
-          <h2 className="text-lg sm:text-2xl mt-1 mx-auto font-bold text-center">
-            Verify Email
+          <h2 className="text-xl sm:text-2xl font-bold text-blue-900">
+            Verify Your Email
           </h2>
         </div>
-        <br />
-        <p className="text-center">
-          A Verification link will be deliver on registered Email
-        </p>{" "}
-        <br />
-        <p className="text-yellow-900 text-sm py-2">
-          Please enter your Registered Email
+
+        <p className="text-gray-600 mt-4 text-center">
+          A verification link will be sent to your registered email.
         </p>
-        {/* Enter Email */}
-        <form onSubmit={SubmitEmail}>
-          <label htmlFor="email">Email </label>
+
+        <p className="text-yellow-900 text-sm mt-4">Please enter your registered email</p>
+
+        {/* Form Section */}
+        <form onSubmit={SubmitEmail} className="mt-4">
+          <label htmlFor="email" className="block font-medium text-gray-700">
+            Email
+          </label>
           <input
             type="email"
             name="email"
-            placeholder="Your@email.com"
-            className="rounded-md outline-none hover:scale-[1.01] w-5/6 px-1 py-[2px] "
-            // ref={andEmail}
+            placeholder="your@email.com"
+            className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            required
           />
-          <br />
-          <br />
-          <p 
-          // hidden={disabled} 
-          className="text-end py-2">
+
+          {/* Submit Button */}
+          <div className="mt-4 text-end">
             <input
               type="submit"
               value="Send OTP"
-              // disabled={disabled}
-              className="p-1 rounded-md hover:scale-105 transition-all duration-200 hover:text-blue-950 hover:shadow-md hover:bg-yellow-500 bg-yellow-600 hover:cursor-pointer"
+              className="px-4 py-2 rounded-md transition-all duration-200 bg-yellow-600 text-white hover:bg-yellow-500 hover:scale-105 cursor-pointer"
             />
-          </p>
+          </div>
         </form>
       </div>
+    </div>
     </>
   )
 }
