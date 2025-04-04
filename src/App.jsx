@@ -35,10 +35,17 @@ import AccountAccessRoot from './Login/AccountAccessRoot.jsx'
 import UserProfile from './Dashboard/EmployeeDashboard/Profile/UserProfile.jsx'
 import Modal from './Modal/Modal.jsx'
 
+
+// employer component
+import EmployerHomeContent from './Dashboard/EmployerDashboard/EmployerHomeContent.jsx'
+import CreatedJobs from './Dashboard/EmployerDashboard/CreatedJobs.jsx'
+import CreateNewJob from './Dashboard/EmployerDashboard/CreateNewJob.jsx'
+import EmployerProfile from './Dashboard/EmployerDashboard/EmployerProfile.jsx'
+
 function App() {
 
   return (
-    <>
+    
 
     <BrowserRouter>
     <Toaster position='top-center'/>
@@ -97,26 +104,36 @@ c
             <Route path='terms-and-conditions' element={<TermsAndConditions/>}/>
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='help-center' element={<HelpCenter/>}/>
-
             
       </Route>
 
 
 
       {/* Employer Dashboard Routes */}
-      <Route path="/employer-dashboard" element={<EmployerDashboard/>}>
+      <Route path="/employer-dashboard/" element={<EmployerDashboard/>}>
+            <Route index element={<Navigate to="home"/>}/>
+
+            {/* sidebar links */}
+            <Route path='home' element={<EmployerHomeContent/>}/>
+            <Route path='created-jobs' element={<CreatedJobs/>}/>
+            <Route path='create-new-jobs' element={<CreateNewJob/>}/>
+            <Route path='employer-profile' element={<EmployerProfile/>}/>
+            <Route path='about-us' element={<AboutUs/>}/>
 
 
+            {/* footer routes */}
+            <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
+            <Route path='terms-and-conditions' element={<TermsAndConditions/>}/>
+            <Route path='feedback' element={<Feedback/>}/>
+            <Route path='help-center' element={<HelpCenter/>}/>
 
       </Route>
+
+
       <Route path="*" element={<div>404 - Page Not Found</div>} />
+
     </Routes>
     </BrowserRouter>
-
-
-
-{/* <JwtToken></JwtToken> */}
-    </>
   )
 }
 

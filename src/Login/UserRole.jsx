@@ -34,10 +34,16 @@ function UserRole() {
             const res = await axios.post("http://localhost:3000/api/select-your-role", { role, email });
             
             toast.success(res.data.message || "Role selected successfully!");
+            if(res?.headers["authorization"]){
+                const token = res?.headers["authorization"];
+                localStorage.setItem("token", token)
+                }
+
+
             // what is the meaning of this line
             await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for smoother transition
-
-            navigate(role === "Employee" ? "/employee-dashboard" : "/employer-dashboard");
+            console.log(res.data.redirectUrl);
+            navigate(res.data.redirectUrl);
         } catch (err) {
             console.error("Error:", err);
             toast.error(err.response?.data?.message || "Something went wrong");

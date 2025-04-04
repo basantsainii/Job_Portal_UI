@@ -35,23 +35,25 @@ const [companyState, setCompanyState] = useState(CompanyData)
 const ChangeImage = ()=>{
     const ImageToChange = [...companyState];
     const ChangedImage = ImageToChange.slice(1);
-    console.log(ChangedImage)
+    // console.log(ChangedImage)
     setCompanyState([...ChangedImage,ImageToChange[0]])
 }
-
+let interval;
+const intrvl = ()=>{
+    interval = setInterval(ChangeImage, 2000);
+}
 useEffect(() => {
-    const interval = setInterval(ChangeImage, 2000);
+    intrvl()
     return () => clearInterval(interval);
   }, );
 
 const ReverseChangeImage = ()=>{
     const ImageToChange = [...companyState];
     const ChangedImage = ImageToChange.pop();  
-    setCompanyState([ChangedImage,...ImageToChange])
+    setCompanyState([ChangedImage, ...ImageToChange])
 }
 
-  return (
-    <div className='px-14 bg-white border-t border-b  '>
+  return (<div className='px-14 bg-white border-t border-b  '>
       <div className='flex justify-start items-center overflow-hidden w-[90%]'>
       <i onClick={ChangeImage}  className="fa-solid fa-angles-right absolute right-28 z-10 rounded-full bg-white border p-1 "></i>
 
@@ -65,7 +67,7 @@ const ReverseChangeImage = ()=>{
             {
                 companyState.map((obj, index)=>{
                         return(
-                            <div key={index} onMouseEnter={()=>clearInterval(intrvl)} onMouseLeave={()=>setIntrvl(intrvl)} className='w-36 animate-crosal'>
+                            <div key={index} onMouseEnter={()=>clearInterval(interval)} onMouseLeave={intrvl} className='w-36 duration-300 animate-crosal'>
                                 <img src={obj.name} alt="" className='' />
                             </div>
                         )
@@ -74,8 +76,7 @@ const ReverseChangeImage = ()=>{
         </div>
         </div>
       </div>
-    </div>
-  )
+    </div>)
 }
 
 export default CompanyCrousal

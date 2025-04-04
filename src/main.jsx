@@ -3,22 +3,26 @@ import "./index.css";
 import App from "./App.jsx";
 import { LoaderContextProvider } from "./Components/LoaderContext.jsx";
 import { DataContextProvider } from "./Components/DataContext.jsx";
-import { ProfileContextProvider } from "./Components/ProfileContext.jsx";
-import { ProfileBackDropProvider } from "./Components/ProfileBackDrop.jsx";
+import { ProfileContextProvider } from "./Components/ForEmployee/ProfileContext.jsx";
+import { ProfileBackDropProvider } from "./Components/ForEmployee/ProfileBackDrop.jsx";
 import { ModalContextProvider } from "./Modal/ModalContext.jsx";
 
-
-
+import { EmployeeDataProvider } from "./Components/ForEmployee/EmployeeDataContext.jsx";
+import { JobContextProvider } from "./Components/ForEmployee/JobContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <LoaderContextProvider>
     <DataContextProvider>
       <ProfileBackDropProvider>
+        <JobContextProvider>
         <ProfileContextProvider>
         <ModalContextProvider>
+        <EmployeeDataProvider>
           <App />
+        </EmployeeDataProvider>
         </ModalContextProvider>
         </ProfileContextProvider>
+        </JobContextProvider>
       </ProfileBackDropProvider>
     </DataContextProvider>
   </LoaderContextProvider>

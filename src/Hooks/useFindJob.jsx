@@ -1,19 +1,9 @@
-import React, { Children, useContext, useEffect } from 'react'
-import LoginSignUpHeader from './LoginSignUpHeader'
-import { Outlet } from 'react-router-dom'
-import GenHomeRoot from './GenHomeRoot.jsx'
-import Footer from '../Footer.jsx'
+import React, { useContext } from 'react'
+import { JobContext } from '../Components/ForEmployee/JobContext'
 import axios from 'axios'
-import { JobContext } from '../../Components/ForEmployee/JobContext.jsx'
+const  FindJob = async()=>{
+  const {job, setJobs} = useContext(JobContext)
 
-
-
-function GeneralDashBoard() {
-  const {fetchJobs, setJobs} = useContext(JobContext)
-console.log(fetchJobs)
-
-//getting jobs data
-const getJobs = async()=>{
   const date = Date.now()
   try{
     const res = await axios.get("http://localhost:3000/api/jobs-get")
@@ -48,23 +38,4 @@ const getJobs = async()=>{
   }
 }
 
-useEffect(()=>{
-  console.log("general dashboard")
-  getJobs();
-  // return ;
-},[fetchJobs])
-
-  return (
-    <>
-      <LoginSignUpHeader></LoginSignUpHeader>
-      <div className='bg-[#F7F7FF]'>
-      <GenHomeRoot>
-      <Outlet></Outlet>
-      </GenHomeRoot>
-      </div>
-      <Footer></Footer>
-    </>
-  )
-}
-
-export default GeneralDashBoard
+export default FindJob

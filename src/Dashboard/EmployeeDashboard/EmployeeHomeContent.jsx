@@ -5,7 +5,7 @@ function EmployeeHomeContent() {
   return (
     <>
       
-        <GeneralHome></GeneralHome>
+        { <GeneralHome></GeneralHome>}
       
     </>
   )

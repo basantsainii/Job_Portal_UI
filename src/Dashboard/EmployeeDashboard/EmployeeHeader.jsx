@@ -3,8 +3,8 @@ import { useState, useContext } from "react";
 import { motion } from "framer-motion"; // Import Framer Motion for animations
 import jobportal2 from "../../assets/jobportal2.gif";
 import ProfileCard from "./Profile/ProfileCard";
-import { ProfileContext } from "../../Components/ProfileContext";
-import { ProfileBackDrop } from "../../Components/ProfileBackDrop";
+import { ProfileContext } from "../../Components/ForEmployee/ProfileContext";
+import { ProfileBackDrop } from "../../Components/ForEmployee/ProfileBackDrop";
 
 function EmployeeHeader(props) {
   const { setDisplayProfile, displayProfile } = useContext(ProfileContext);
@@ -12,38 +12,62 @@ function EmployeeHeader(props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const midNav =
-    "hover:cursor-pointer hover:text-black hover:[text-shadow:_0px_0px_1px_black] px-1";
-  const active =
-    "text-blue-900 font-bold [text-shadow:_0px_0px_0px_black]";
+    "hover:cursor-pointer hover:text-black hover:[text-shadow:_0px_0px_1px_black] px-1 block hover:bg-blue-100 rounded-sm p-3";
+  const active = "text-blue-900 font-bold [text-shadow:_0px_0px_0px_black] block bg-blue-100 rounded-sm p-3";
 
   return (
     <>
-      <header className="bg-white flex justify-between items-center p-3 shadow-md relative px-4">
-
-{/* Hamburger Menu Button (Mobile) */}
-<div className="md:hidden">
+      <header className="bg-white flex justify-between items-center p-3 shadow-md relative z-[] px-4">
+        {/* Hamburger Menu Button (Mobile) */}
+        <div className="md:hidden">
           <button onClick={() => setMenuOpen(true)}>
             <i className="fa-solid fa-bars text-2xl text-blue-900"></i>
           </button>
         </div>
 
-
         {/* Logo */}
         <div className="mr-auto ml-5 md:mr-0 md:ml-0">
           <Link to="/employee-dashboard/home">
-            <img src={jobportal2} className="h-8 md:h-10" alt="Employee portal" />
+            <img
+              src={jobportal2}
+              className="h-8 md:h-10"
+              alt="Employee portal"
+            />
           </Link>
         </div>
 
-        
-
         {/* Navigation Menu for Desktop */}
         <div className="hidden md:flex items-center gap-5">
-          <NavLink to="home" className={({ isActive }) => isActive ? active : midNav}>Home</NavLink>
-          <NavLink to="jobs" className={({ isActive }) => isActive ? active : midNav}>Jobs</NavLink>
-          <NavLink to="companies" className={({ isActive }) => isActive ? active : midNav}>Companies</NavLink>
-          <NavLink to="applied" className={({ isActive }) => isActive ? active : midNav}>Applied</NavLink>
-          <NavLink to="about-us" className={({ isActive }) => isActive ? active : midNav}>About Us</NavLink>
+          <NavLink
+            to="home"
+            className={({ isActive }) => (isActive ? active : midNav)}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="jobs"
+            className={({ isActive }) => (isActive ? active : midNav)}
+          >
+            Jobs
+          </NavLink>
+          <NavLink
+            to="companies"
+            className={({ isActive }) => (isActive ? active : midNav)}
+          >
+            Companies
+          </NavLink>
+          <NavLink
+            to="applied"
+            className={({ isActive }) => (isActive ? active : midNav)}
+          >
+            Applied
+          </NavLink>
+          <NavLink
+            to="about-us"
+            className={({ isActive }) => (isActive ? active : midNav)}
+          >
+            About Us
+          </NavLink>
         </div>
 
         {/* Icons & Profile */}
@@ -89,26 +113,80 @@ function EmployeeHeader(props) {
               </button>
 
               {/* Logo */}
-        
-          <Link to="/employee-dashboard/home">
-            <img src={jobportal2} className="h-8 md:h-10" alt="Employee portal" />
-          </Link>
-        
+              <Link to="/employee-dashboard/home">
+                <img
+                  src={jobportal2}
+                  className="h-8 md:h-10"
+                  alt="Employee portal"
+                />
+              </Link>
 
               {/* Mobile Navigation Links */}
               <nav className="flex flex-col gap-2 mt-5">
-                <NavLink to="home" className={({ isActive }) => (isActive ? `${active} block bg-blue-100 rounded-sm p-3` : `${midNav} block hover:bg-blue-100 rounded-sm p-3`)} onClick={() => setMenuOpen(false)}>Home</NavLink>
-                <NavLink to="jobs" className={({ isActive }) => (isActive ? `${active} block bg-blue-100 rounded-sm p-3` : `${midNav} block hover:bg-blue-100 rounded-sm p-3`)} onClick={() => setMenuOpen(false)}>Jobs</NavLink>
-                <NavLink to="companies" className={({ isActive }) => (isActive ? `${active} block bg-blue-100 rounded-sm p-3` : `${midNav} block hover:bg-blue-100 rounded-sm p-3`)} onClick={() => setMenuOpen(false)}>Companies</NavLink>
-                <NavLink to="applied" className={({ isActive }) => (isActive ? `${active} block bg-blue-100 rounded-sm p-3` : `${midNav} block hover:bg-blue-100 rounded-sm p-3`)} onClick={() => setMenuOpen(false)}>Applied</NavLink>
-                <NavLink to="about-us" className={({ isActive }) => (isActive ? `${active} block bg-blue-100 rounded-sm p-3` : `${midNav} block hover:bg-blue-100 rounded-sm p-3`)} onClick={() => setMenuOpen(false)}>About Us</NavLink>
+                <NavLink
+                  to="home"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${active} block bg-blue-100 rounded-sm p-3`
+                      : `${midNav} block hover:bg-blue-100 rounded-sm p-3`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  to="jobs"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${active} block bg-blue-100 rounded-sm p-3`
+                      : `${midNav} block hover:bg-blue-100 rounded-sm p-3`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Jobs
+                </NavLink>
+                <NavLink
+                  to="companies"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${active} block bg-blue-100 rounded-sm p-3`
+                      : `${midNav} block hover:bg-blue-100 rounded-sm p-3`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Companies
+                </NavLink>
+                <NavLink
+                  to="applied"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${active} `
+                      : `${midNav}`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Applied
+                </NavLink>
+                <NavLink
+                  to="about-us"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${active} block bg-blue-100 rounded-sm p-3`
+                      : `${midNav} block hover:bg-blue-100 rounded-sm p-3`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  About Us
+                </NavLink>
               </nav>
             </motion.div>
           </>
         )}
 
         {/* Profile Card (When Open) */}
-        {displayProfile && <ProfileCard displayProfile={props.employeeDetails} />}
+        {displayProfile && (
+          <ProfileCard displayProfile={props.employeeDetails} />
+        )}
       </header>
     </>
   );

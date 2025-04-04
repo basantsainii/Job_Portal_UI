@@ -8,7 +8,7 @@ function EmployeeFooter() {
 
   return (
     <>
-      <footer className="bg-white shadow-md p-4 md:p-6">
+      <footer className="bg-white shadow-[0px_0px_1px_0px_black] p-4 md:p-6">
         {/* Main Footer Container */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-10 text-center md:text-left">
           {/* Logo */}

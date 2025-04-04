@@ -11,7 +11,7 @@ function LoginSignUpHeader() {
 
   return (
     <>
-      <div className="flex justify-between items-center p-3 shadow-lg px-4 bg-white">
+      <div className="flex justify-between items-center p-3 shadow-xl px-4 bg-white">
         {/* Logo */}
         <div>
           <Link to="/home">

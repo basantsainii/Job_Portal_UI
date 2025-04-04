@@ -16,9 +16,9 @@ const {setData} = useContext(DataContext)
    const SubmitForm = async(e)=>{
     e.preventDefault();
     const data = new FormData(e.target);
-    console.log(data)
+    // console.log(data)
     const formData = Object.fromEntries(data) // changing formData into object
-    console.log(formData)
+    // console.log(formData)
     if(!formData.email || !formData.password){
       toast.error("please fill all the fields")
       return
@@ -39,10 +39,11 @@ const {setData} = useContext(DataContext)
             // console.log("bsnt")
             // console.log(response?.headers)
             if(response?.headers["authorization"]){
+              console.log(response)
             const token = response?.headers["authorization"];
             localStorage.setItem("token", token)
             }
-            
+          
             navigate(response?.data?.redirectUrl)
            }else{
              toast.error(response?.data?.message)
