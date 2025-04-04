@@ -3,9 +3,11 @@ import React, { useContext } from 'react'
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { LoaderContext } from '../Components/LoaderContext';
-
+import { BackendContext } from '../Components/BackendDomainContext';
 function ReVerifyMail() {
 const {setLoading} = useContext(LoaderContext)
+const {BackEndDomain} = useContext(BackendContext)
+
   const navigate = useNavigate();
 
 
