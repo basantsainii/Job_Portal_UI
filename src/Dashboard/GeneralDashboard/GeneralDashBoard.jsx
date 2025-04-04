@@ -5,18 +5,19 @@ import GenHomeRoot from './GenHomeRoot.jsx'
 import Footer from '../Footer.jsx'
 import axios from 'axios'
 import { JobContext } from '../../Components/ForEmployee/JobContext.jsx'
-
+import { BackendContext } from '../../Components/BackendDomainContext.jsx'
 
 
 function GeneralDashBoard() {
   const {fetchJobs, setJobs} = useContext(JobContext)
-console.log(fetchJobs)
+console.log(fetchJobs);
+const {BackEndDomain} = useContext(BackEndDomain)
 
 //getting jobs data
 const getJobs = async()=>{
   const date = Date.now()
   try{
-    const res = await axios.get("http://localhost:3000/api/jobs-get")
+    const res = await axios.get(`${BackEndDomain}/api/jobs-get`)
     const foundedJobs = res?.data?.foundJobs.map((job, i)=>{
       const currentDate = new Date(job?.updatedAt)
       // console.log(currentDate)
