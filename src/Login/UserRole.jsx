@@ -5,11 +5,14 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from '../Components/DataContext';
 import jobportalGif from '../assets/jobportal2.gif'; // Ensure correct path
+import { BackendContext } from '../Components/BackendDomainContext'
+
 
 function UserRole() {
     const [role, setRole] = useState(null); 
     const { setLoading } = useContext(LoaderContext);
     const { data, setData } = useContext(DataContext);
+    const {BackEndDomain} = useContext(BackendContext);
     const navigate = useNavigate();
     useEffect(()=>{
         if(!data){

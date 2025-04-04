@@ -3,11 +3,13 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoaderContext } from '../Components/LoaderContext'
+import { BackendContext } from '../Components/BackendDomainContext'
+
 
 function SignUpForm() {
-const Navigate = useNavigate()
-const {setLoading} = useContext(LoaderContext)
-
+const Navigate = useNavigate();
+const {setLoading} = useContext(LoaderContext);
+const {BackEndDomain} = useContext(BackendContext);
 
 const handleFormData = (e) => {
       //  setFormData({...formData, [e.target.name]: e.target.value})
