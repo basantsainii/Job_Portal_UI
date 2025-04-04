@@ -11,7 +11,7 @@ import { BackendContext } from '../../Components/BackendDomainContext.jsx'
 function GeneralDashBoard() {
   const {fetchJobs, setJobs} = useContext(JobContext)
 console.log(fetchJobs);
-const {BackEndDomain} = useContext(BackEndDomain)
+const {BackEndDomain} = useContext(BackendContext)
 
 //getting jobs data
 const getJobs = async()=>{
