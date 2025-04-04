@@ -3,11 +3,20 @@ import React, { useContext, useState } from "react";
 import { LoaderContext } from "../../../Components/LoaderContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { BackendContext } from "../../../Components/BackendDomainContext.jsx";
+
+
+
 
 function UpdateProfileDp() {
   const { setLoading } = useContext(LoaderContext);
   const [preview, setPreview] = useState(null);
 const navigate = useNavigate()
+  const { BackEndDomain } = useContext(BackendContext);
+
+
+
+
   const handlechange = (e)=>{
 
 // e.target.files  gives a field list whose index 0 is with file details
@@ -35,7 +44,7 @@ const navigate = useNavigate()
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:3000/api/upload-single",
+        `${BackEndDomain}/api/upload-single`,
         formData,
         {
           headers: {

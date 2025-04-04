@@ -6,6 +6,9 @@ import { EmployeeData } from "./EmployeeDataContext";
 import { useContext } from "react";
 import { LoaderContext } from "../LoaderContext";
 import { JobContext } from "./JobContext";
+import { BackendContext } from "../BackendDomainContext";
+
+
 
 function JobCard({ Jobs, app }) {
   const navigate = useNavigate();
@@ -13,6 +16,7 @@ function JobCard({ Jobs, app }) {
   const { employeeData } = useContext(EmployeeData);
   const { setLoading } = useContext(LoaderContext);
   const { fetchJobs, setFetchJobs } = useContext(JobContext);
+  const { BackEndDomain } = useContext(BackendContext);
   // console.log(employeeData)
   console.log("Job Card");
   // console.log(loading)
@@ -56,7 +60,7 @@ function JobCard({ Jobs, app }) {
     try {
       setLoading(true);
       const applyJob = await axios.post(
-        `https://find-employee.onrender.com/api/apply-job/${jobId}`,
+        `${BackEndDomain}/api/apply-job/${jobId}`,
         { id: jobId },
         { headers: { authorization: token } }
       );

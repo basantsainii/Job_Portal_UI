@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ModalContext } from "../../../Modal/ModalContext.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BackendContext } from "../../../Components/BackendDomainContext.jsx";
+
 
 const UserEducation = ()=> {
   return (
@@ -27,6 +29,7 @@ function UserProfile() {
   const [profileData, setProfileData] = useState({});
   const [userData, setUserData] = useState();
   const { setActiveModal } = useContext(ModalContext);
+  const { BackEndDomain } = useContext(BackendContext);
 
   const userProfileData = (Resume) => {
     if (Resume) {
@@ -41,7 +44,7 @@ function UserProfile() {
     const token = localStorage.getItem("token");
     try {
       const res = await axios.get(
-        "https://find-employee.onrender.com/api/fetch-user-profile",
+        `${BackEndDomain}/api/fetch-user-profile`,
         {
           headers: { Authorization: token },
         }

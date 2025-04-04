@@ -31,7 +31,7 @@ function UserRole() {
         try {
             const email = data.email; 
             
-            const res = await axios.post("http://localhost:3000/api/select-your-role", { role, email });
+            const res = await axios.post(`${BackEndDomain}/api/select-your-role`, { role, email });
             
             toast.success(res.data.message || "Role selected successfully!");
             if(res?.headers["authorization"]){

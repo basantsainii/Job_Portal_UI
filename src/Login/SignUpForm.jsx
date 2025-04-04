@@ -21,7 +21,7 @@ const handleFormData = (e) => {
     const formData = Object.fromEntries(data) // changing formData into object
           
           try{
-           const response = await axios.post("http://localhost:3000/api/Signup", formData);
+           const response = await axios.post(`${BackEndDomain}/api/Signup`, formData);
            toast.success('Registration Successful. Check your email for verification link.')
            console.log(response?.status, response?.data?.message)
            Navigate('/mail-verification')

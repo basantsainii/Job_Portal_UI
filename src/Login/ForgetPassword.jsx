@@ -3,6 +3,8 @@ import React, { useContext, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoaderContext } from "../Components/LoaderContext";
+import { BackendContext } from "../Components/BackendDomainContext";
+
 
 function ForgetPassword() {
   const andEmail = useRef();
@@ -10,6 +12,7 @@ function ForgetPassword() {
   const [message, setMessage] = useState("");
   let [formData, setFormData] = useState({})
   const { setLoading } = useContext(LoaderContext);
+const {BackEndDomain} = useContext(BackendContext)
 
   // send OTP
   const SendOtp = async (e) => {
@@ -20,7 +23,7 @@ function ForgetPassword() {
     setFormData(formData);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/forgot-password-otp",
+        `${BackEndDomain}/api/forgot-password-otp`,
         formData
       );
       if (response.status === 200) {
@@ -49,7 +52,7 @@ function ForgetPassword() {
     const OTP = e.target.otp.value;
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/otp-verification",
+        `${BackEndDomain}/api/otp-verification`,
         { ...formData, Otp: OTP }
       );
       if (res.status === 200) {
@@ -135,7 +138,7 @@ export default ForgetPassword;
 //     return;
 //   }
 //   try{
-//     const response = await axios.post(`http://localhost:3000/api/forgot-password-otp-request`, {email : email});
+//     const response = await axios.post(`${BackEndDomain}/api/forgot-password-otp-request`, {email : email});
 //     if(response.status === 200){
 //       toast.success("Email verification successful. Please enter OTP sent to your registered email");
 //     }else{

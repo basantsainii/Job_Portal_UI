@@ -5,13 +5,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LoaderContext } from '../Components/LoaderContext'
 import { DataContext } from '../Components/DataContext'
 import jobportal2 from '../assets/jobportal2.gif'
-
+import { BackendContext } from '../Components/BackendDomainContext'
 
 
 function LoginForm() {
 const navigate = useNavigate()
 const {setLoading} = useContext(LoaderContext)
 const {setData} = useContext(DataContext)
+const {BackEndDomain} = useContext(BackendContext)
+
 
    const SubmitForm = async(e)=>{
     e.preventDefault();
@@ -32,7 +34,7 @@ const {setData} = useContext(DataContext)
     
     try{
       setLoading(true);
-           const response = await axios.post("http://localhost:3000/api/login", formData);
+           const response = await axios.post(`${BackEndDomain}/api/login`, formData);
            if(response.status === 201){
             toast.success(response?.data?.message || 'you are logged In Successfully')
             // navigate("/employee-dashboard")
@@ -77,7 +79,7 @@ const {setData} = useContext(DataContext)
       if(!token){
             return;
       }
-      const res = await axios.get("http://localhost:3000/api/auto-login", {headers : {authorization: token}});
+      const res = await axios.get(`${BackEndDomain}/api/auto-login`, {headers : {authorization: token}});
       console.log(res)
       if(res?.status == 201){
         if(res?.data?.userDetails?.role === "Employee"){

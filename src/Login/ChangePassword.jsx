@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoaderContext } from "../Components/LoaderContext";
+import { BackendContext } from "../Components/BackendDomainContext";
+
 
 function ChangePassword() {
 
@@ -12,7 +14,7 @@ const [p1,setP1] = useState();
 const [p2,setP2] = useState();
 const [err, setErr] = useState({});
 const {setLoading}= useContext(LoaderContext)
-
+const {BackEndDomain} = useContext(BackendContext)
 
 // verifying password
 const passwordCheck = (e) => {
@@ -45,7 +47,7 @@ const ResetPassword = async(e)=>{
     
   }
   try{
-    const res = await axios.post("http://localhost:3000/api/update-details", {email:email, password: p2});
+    const res = await axios.post(`${BackEndDomain}/api/update-details`, {email:email, password: p2});
     if (res.status === 200) {
       sessionStorage.setItem('email', "");
       toast.success('Password Changed Successfully')

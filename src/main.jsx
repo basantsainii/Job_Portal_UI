@@ -9,6 +9,11 @@ import { ModalContextProvider } from "./Modal/ModalContext.jsx";
 
 import { EmployeeDataProvider } from "./Components/ForEmployee/EmployeeDataContext.jsx";
 import { JobContextProvider } from "./Components/ForEmployee/JobContext.jsx";
+import { BackendContextProvider } from "./Components/BackendDomainContext.jsx";
+
+BackendContextProvider
+
+
 
 createRoot(document.getElementById("root")).render(
   <LoaderContextProvider>
@@ -18,7 +23,9 @@ createRoot(document.getElementById("root")).render(
         <ProfileContextProvider>
         <ModalContextProvider>
         <EmployeeDataProvider>
+        <BackendContextProvider>
           <App />
+        </BackendContextProvider>
         </EmployeeDataProvider>
         </ModalContextProvider>
         </ProfileContextProvider>

@@ -15,7 +15,7 @@ setLoading(true);
 const Email = e.target.email.value
 try{
   console.log(Email)
- const res  = await axios.post("http://localhost:3000/api/resend-verification-email", {email:Email})
+ const res  = await axios.post(`${BackEndDomain}/api/resend-verification-email`, {email:Email})
  if(res.status === 200){
   toast.success("email sent successfully");
   navigate("/mail-verification")

@@ -13,7 +13,7 @@ import Modal from "../../Modal/Modal";
 import { EmployeeData } from "../../Components/ForEmployee/EmployeeDataContext";
 import { JobContext } from "../../Components/ForEmployee/JobContext";
 
-
+import { BackendContext } from "../../Components/BackendDomainContext";
 
 function EmployeeDashboard() {
 
@@ -26,6 +26,8 @@ const {backDrop, setBackDrop} = useContext(ProfileBackDrop)
 // storing user data in global state
 const {employeeData, setEmployeeData} = useContext(EmployeeData) 
 // console.log(employeeData);
+  const { BackEndDomain } = useContext(BackendContext);
+  console.log(BackEndDomain);
 
 // getting employee data
 const EmployeeAuth = async()=>{
@@ -38,7 +40,7 @@ const EmployeeAuth = async()=>{
           toast.error("please login....")
           return  
     }
-    const res = await axios.get("https://find-employee.onrender.com/api/auto-login", {headers : {authorization: token}});
+    const res = await axios.get(`${BackEndDomain}/api/auto-login`, {headers : {authorization: token}});
     // console.log(res)  
     // setEmployeeDetails(res?.data?.userDetails);
     setEmployeeData(res?.data?.userDetails)
@@ -67,7 +69,7 @@ const {fetchJobs, setJobs} = useContext(JobContext)
 const getJobs = async()=>{
   const date = Date.now()
   try{
-    const res = await axios.get("https://find-employee.onrender.com/api/jobs-get")
+    const res = await axios.get(`${BackEndDomain}/api/jobs-get`)
     const foundedJobs = res?.data?.foundJobs.map((job, i)=>{
       const currentDate = new Date(job?.updatedAt)
       // console.log(currentDate)

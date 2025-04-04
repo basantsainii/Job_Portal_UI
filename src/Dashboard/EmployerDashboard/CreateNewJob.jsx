@@ -1,8 +1,11 @@
 import axios from "axios";
 import { header } from "framer-motion/client";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { BackendContext } from "../../Components/BackendDomainContext";
+
+
 
 const CreateNewJob = () => {
 const navigate = useNavigate()
@@ -23,6 +26,7 @@ const skills = useRef()
   });
 
 const [skill, setSkill] = useState([]);
+const {BackEndDomain} = useContext(BackendContext);
 
   const handleChange = (e) => {
     if (e.target.name === "companyLogo") {
@@ -69,7 +73,7 @@ const [skill, setSkill] = useState([]);
     }
     try{
 
-      const res = await axios.post('http://localhost:3000/api/job-post/123456',formData,{headers : {authorization : token}})
+      const res = await axios.post(`${BackEndDomain}/api/job-post/123456`,formData,{headers : {authorization : token}})
 if (res?.data?.success == true){
   toast.success(res?.data?.message);
 

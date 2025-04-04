@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import { JobContext } from '../Components/ForEmployee/JobContext'
 import axios from 'axios'
+import { BackendContext } from '../Components/BackendDomainContext'
+
 const  FindJob = async()=>{
   const {job, setJobs} = useContext(JobContext)
-
+const {BackEndDomain} = useContext(BackendContext)
   const date = Date.now()
   try{
-    const res = await axios.get("http://localhost:3000/api/jobs-get")
+    const res = await axios.get(`${BackEndDomain}/api/jobs-get`)
     const foundedJobs = res?.data?.foundJobs.map((job, i)=>{
       const currentDate = new Date(job?.updatedAt)
       // console.log(currentDate)

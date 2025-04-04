@@ -3,8 +3,13 @@ import { LoaderContext } from "../../../Components/LoaderContext";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { BackendContext } from "../../../Components/BackendDomainContext";
+
+
 function UpdateResume() {
   const { setLoading } = useContext(LoaderContext);
+    const { BackEndDomain } = useContext(BackendContext);
+  
   const navigate = useNavigate();
 
   const uploadDp = async (e) => {
@@ -27,7 +32,7 @@ function UpdateResume() {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:3000/api/upload-single",
+        `${BackEndDomain}/api/upload-single`,
         formData,
         {
           headers: {
