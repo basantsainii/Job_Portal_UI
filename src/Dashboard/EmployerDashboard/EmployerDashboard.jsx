@@ -13,6 +13,8 @@ import { LoaderContext } from "../../Components/LoaderContext";
 import { ProfileBackDrop } from "../../Components/ForEmployee/ProfileBackDrop";
 import Modal from "../../Modal/Modal";
 import { EmployeeData } from "../../Components/ForEmployee/EmployeeDataContext";
+import { BackendContext } from '../../Components/BackendDomainContext.jsx'
+
 
 function EmployerDashboard() {
 
@@ -21,8 +23,12 @@ const {setLoading} = useContext(LoaderContext)
 const {setDisplayProfile} = useContext(ProfileContext)
 const {backDrop, setBackDrop} = useContext(ProfileBackDrop)
 const {employeeData, setEmployeeData} = useContext(EmployeeData) 
+const {BackEndDomain} = useContext(BackendContext)
+
 // console.log(employeeData);
 const EmployeeAuth = async()=>{
+
+  
   setLoading(true)
   try{
 
@@ -32,7 +38,7 @@ const EmployeeAuth = async()=>{
           toast.error("please login....")
           return  
     }
-    const res = await axios.get("http://localhost:3000/api/auto-login", {headers : {authorization: token}});
+    const res = await axios.get(`${BackEndDomain}/api/auto-login`, {headers : {authorization: token}});
     if(res?.data?.success == true){
       setEmployeeData(res?.data?.userDetails)
     }
