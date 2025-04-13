@@ -17,7 +17,7 @@ function EmployeeHeader(props) {
 
   return (
     <>
-      <header className="bg-white flex justify-between items-center p-3 shadow-md relative z-[] px-4">
+      <header className="bg-white flex justify-between items-center p-3 shadow-md relative  px-4">
         {/* Hamburger Menu Button (Mobile) */}
         <div className="md:hidden">
           <button onClick={() => setMenuOpen(true)}>

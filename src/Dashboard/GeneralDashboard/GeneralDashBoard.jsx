@@ -19,7 +19,7 @@ const getJobs = async()=>{
   try{
     const res = await axios.get(`${BackEndDomain}/api/jobs-get`)
     const foundedJobs = res?.data?.foundJobs.map((job, i)=>{
-      const currentDate = new Date(job?.updatedAt)
+      const currentDate = new Date(job?.createdAt)
       // console.log(currentDate)
       let updated = Math.floor((date - currentDate)/(1000*60*60*24));
       // console.log(updated);

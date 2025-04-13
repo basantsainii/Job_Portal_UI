@@ -6,21 +6,25 @@ import toast from "react-hot-toast";
 import { BackendContext } from "../../../Components/BackendDomainContext.jsx";
 
 
-const UserEducation = ()=> {
+const Education = ({Edu})=> {
+  const {setEdu, setActiveModal } = useContext(ModalContext);
+  console.log(Edu)
   return (
     <div className="mt-4 grid gap-4">
-      {/* {educations.map((edu) => {
-        return ( */}
-          <div className="bg-gray-100 p-4 rounded-lg shadow-sm flex flex-col sm:flex-row justify-between items-start">
+      {Edu.map((edu, i) => {
+        return (
+          <div key={i} className="bg-gray-100 p-4 rounded-lg shadow-sm flex flex-col sm:flex-row justify-between items-start">
             <div>
-              <h4 className="font-medium">Bachelor's in Computer Science</h4>
-              <p className="text-gray-600">XYZ University</p>
-              <p className="text-gray-500 text-sm">2018 - 2022 | Full-time</p>
+              <h4 className="font-medium">{edu.course}</h4>
+              <p className="text-gray-600">{edu.institute}</p>
+              <p className="text-gray-500 text-sm">{edu.startingYear} - {edu.passingYear} | {edu.mode}</p>
             </div>
-            <i className="fa-solid fa-pen-to-square text-blue-800 cursor-pointer"></i>
+            <i onClick={()=>{setActiveModal("education"); setEdu(Edu[i])}}
+            className="fa-solid fa-pen-to-square text-blue-800 cursor-pointer ml-auto"></i>
+            <i onClick={()=>{setActiveModal("confirm1"); setEdu(Edu[i]);}} className="fa-solid fa-trash cursor-pointer text-red-600 ml-4"></i>
           </div>
-        {/* );
-      })} */}
+        );
+      })}
     </div>
   );
 }
@@ -50,6 +54,7 @@ function UserProfile() {
         }
       );
       if (res.status === 200) {
+        console.log(res?.data?.userProfileData)
         setProfileData(res?.data?.userProfileData);
         userProfileData(res?.data?.userProfileData?.resume);
       }
@@ -117,6 +122,8 @@ function UserProfile() {
         </div>
       )}
 
+
+{/* resume section */}
       <div className="bg-white shadow-md rounded-xl p-4 sm:p-6 mt-6">
         <div className="flex justify-between">
           <h3 className="text-xl font-semibold">Resume</h3>
@@ -136,10 +143,11 @@ function UserProfile() {
                   href={profileData?.resume}
                   download={userData}
                   className="text-blue-800"
+                  target="_blank"
                 >
-                  <i className="fa-solid fa-download p-2 rounded-full hover:bg-blue-100"></i>
+                  <i className="fa-solid fa-download py-2 rounded-full hover:bg-blue-100 "></i>
                 </a>
-                <i className="fa-solid fa-trash text-red-500 p-2 rounded-full hover:bg-red-100 cursor-pointer"></i>
+                <i className="fa-solid fa-trash text-red-500 py-2 rounded-full hover:bg-red-100 cursor-pointer"></i>
               </div>
             </div>
           ) : (
@@ -150,15 +158,17 @@ function UserProfile() {
         </div>
       </div>
 
+
+{/* education section */}
       <div className="bg-white shadow-md rounded-xl p-4 sm:p-6 mt-6">
         <div className="flex justify-between">
           <h3 className="text-xl font-semibold">Education</h3>
-          <p className="text-blue-800 cursor-pointer">Update</p>
+          <p className="text-blue-800 cursor-pointer"  onClick={() => setActiveModal("education")}>Add+</p>
         </div>
 
         
           {/* // user education */}
-          <UserEducation />
+          <Education Edu={profileData.Education || []} />
         
       </div>
 

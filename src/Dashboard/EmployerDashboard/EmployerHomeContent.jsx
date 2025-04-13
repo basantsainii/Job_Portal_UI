@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom'
 function EmployerHomeContent() {
   const {employeeData} = useContext(EmployeeData)
   const [selected, setSelected] = useState(true)
-  console.log(employeeData?.postedJob)
+  // console.log(employeeData?.postedJob)
 
   // const Jobs = [
   //     { title: "Web Developer", company: "Find Employee", experience: "2-4 years", location: "Dehradun", post_time: "1 day ago", company_logo: job_portal_about, applicants: "5" },

@@ -10,8 +10,6 @@ const navigate = useNavigate();
   const logOut = ()=>{
     localStorage.removeItem("token"); 
     navigate('/'); 
-    setDisplayProfile(false);
-    setBackDrop(false); 
     toast.success("logOut Successfully")
   }
 
