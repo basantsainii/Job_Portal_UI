@@ -1,12 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 export const BackendContext = createContext();
 
 export const BackendContextProvider = (prop)=>{
 
-  const BackEndDomain = "http://localhost:3000";
-  // const [backEndDomain, setBackEndDomain] = useState(BackEndDomain);
-  // "https://find-employee.onrender.com"
+  const BackEnd = "http://localhost:3000";
+  // const BackEndDomain = "https://find-employee.onrender.com";
+
+
+  const BackEndDomain = useMemo(()=>({BackEnd}), [BackEnd]);
 
   return(
     <BackendContext.Provider value={{BackEndDomain}}>

@@ -14,7 +14,7 @@ const {setLoading} = useContext(LoaderContext)
 const {setData} = useContext(DataContext)
 const {BackEndDomain} = useContext(BackendContext)
 
-
+console.log(BackEndDomain)
    const SubmitForm = async(e)=>{
     e.preventDefault();
     const data = new FormData(e.target);
@@ -52,6 +52,7 @@ const {BackEndDomain} = useContext(BackendContext)
            }
           //  console.log(response?.status, response?.data?.message)
           }catch(err){
+            console.log("bsnt")
             console.error(err.message)
             if (err?.response) {
               // Log backend response
