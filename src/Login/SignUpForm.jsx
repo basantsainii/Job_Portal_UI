@@ -10,7 +10,6 @@ function SignUpForm() {
 const Navigate = useNavigate();
 const {setLoading} = useContext(LoaderContext);
 const {BackEndDomain} = useContext(BackendContext);
-
 const handleFormData = (e) => {
       //  setFormData({...formData, [e.target.name]: e.target.value})
       //  console.log(formData)
@@ -21,8 +20,10 @@ const handleFormData = (e) => {
     setLoading(true);
     const data = new FormData(e.target);
     const formData = Object.fromEntries(data) // changing formData into object
-          
+    // console.log(BackEndDomain)
           try{
+          //  console.log(BackEndDomain)
+          //  console.log(`Calling: ${BackEndDomain}/api/Signup`);
            const response = await axios.post(`${BackEndDomain}/api/Signup`, formData);
            toast.success('Registration Successful. Check your email for verification link.')
            console.log(response?.status, response?.data?.message)

@@ -6,6 +6,7 @@ import { LoaderContext } from '../Components/LoaderContext'
 import { DataContext } from '../Components/DataContext'
 import jobportal2 from '../assets/jobportal2.gif'
 import { BackendContext } from '../Components/BackendDomainContext'
+import { CloudCog } from 'lucide-react'
 
 
 function LoginForm() {
@@ -14,7 +15,6 @@ const {setLoading} = useContext(LoaderContext)
 const {setData} = useContext(DataContext)
 const {BackEndDomain} = useContext(BackendContext)
 
-console.log(BackEndDomain)
    const SubmitForm = async(e)=>{
     e.preventDefault();
     const data = new FormData(e.target);
@@ -34,6 +34,7 @@ console.log(BackEndDomain)
     
     try{
       setLoading(true);
+      console.log(BackEndDomain)
            const response = await axios.post(`${BackEndDomain}/api/login`, formData);
            if(response.status === 201){
             toast.success(response?.data?.message || 'you are logged In Successfully')

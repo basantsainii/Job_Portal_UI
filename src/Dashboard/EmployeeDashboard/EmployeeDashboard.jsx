@@ -41,10 +41,10 @@ const EmployeeAuth = async()=>{
           return  
     }
     const res = await axios.get(`${BackEndDomain}/api/auto-login`, {headers : {authorization: token}});
-    // console.log(res)  
+    console.log(res)  
     // setEmployeeDetails(res?.data?.userDetails);
     setEmployeeData(res?.data?.userDetails)
-    // console.log(res?.data?.userDetails)
+    console.log(res?.data?.userDetails)
   }catch(err){
     navigate("/login")
     // toast.error(err?.message);
